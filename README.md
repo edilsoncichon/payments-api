@@ -78,6 +78,11 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
   ```bash
   docker-compose exec app bash
   ```
+  
+- **Executar a análise estática do código:**
+  ```bash
+  docker-compose exec app vendor/bin/phpstan
+  ```
 
 - **Rodar os testes:**
   ```bash
