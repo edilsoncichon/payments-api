@@ -24,5 +24,4 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-
-USER 1000
+RUN git config --global --add safe.directory /var/www

@@ -10,6 +10,10 @@ services:
     volumes:
       - ./:/var/www
       - ./.docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - composer_cache:/tmp/composer
+    environment:
+      - COMPOSER_HOME=/tmp/composer
+      - COMPOSER_CACHE_DIR=/tmp/composer/cache
     networks:
       - payments-network
     depends_on:
@@ -46,12 +50,10 @@ services:
     ports:
       - "3306:3306"
 
-# Podman specific: Uncomment the line below if you have permission issues with volumes
-#    userns_mode: keep-id
-
 networks:
   payments-network:
     driver: bridge
 
 volumes:
   db-data:
+  composer_cache:
