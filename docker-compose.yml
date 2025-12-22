@@ -2,7 +2,11 @@ services:
   app:
     build:
       context: .
+      args:
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
       dockerfile: .docker/php/Dockerfile
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
     image: payments-api-php
     container_name: payments-api-app
     restart: unless-stopped

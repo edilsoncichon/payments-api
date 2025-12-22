@@ -1,5 +1,8 @@
 FROM php:8.4-fpm
 
+ARG USER_ID
+ARG GROUP_ID
+
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -21,7 +24,14 @@ RUN pecl install xdebug \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+RUN usermod -u ${USER_ID} www-data && groupmod -g ${GROUP_ID} www-data
+
+RUN git config --global --add safe.directory /var/www
+
+RUN mkdir /tmp/composer
+
+RUN chown -R www-data:www-data /var/www /tmp/composer
+
 WORKDIR /var/www
 
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-RUN git config --global --add safe.directory /var/www
+USER www-data
