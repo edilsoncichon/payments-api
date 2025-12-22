@@ -24,77 +24,48 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
    git clone https://github.com/edilsoncichon/payments-api.git
    cd payments-api
    ```
-
-2. **Configure as variáveis de ambiente**
-
-   Copie o arquivo de exemplo para criar o seu `.env`:
+2. **Inicie os containers**
 
    ```bash
-   cp .env.example .env
+   docker compose up -d --build
    ```
 
-   Certifique-se de configurar as credenciais do banco de dados no `.env` para corresponderem ao `docker-compose.yml`:
+3. **Configure o projeto**
 
-   ```ini
-   DB_CONNECTION=mysql
-   DB_HOST=db
-   DB_PORT=3306
-   DB_DATABASE=payments_api
-   DB_USERNAME=userdb
-   DB_PASSWORD=userdb
-   ```
-
-3. **Inicie os containers**
+   Execute o comando abaixo para configurar o projeto via Composer:
 
    ```bash
-   docker-compose up -d --build
-   ```
-
-4. **Instale as dependências**
-
-   Execute o comando abaixo para instalar as dependências do PHP via Composer (dentro do container):
-
-   ```bash
-   docker-compose exec app composer install
-   ```
-
-5. **Gere a chave da aplicação**
-
-   ```bash
-   docker-compose exec app php artisan key:generate
-   ```
-
-6. **Execute as migrações**
-
-   Crie as tabelas no banco de dados:
-
-   ```bash
-   docker-compose exec app php artisan migrate
+   docker compose exec app composer setup
    ```
 
 ## 🛠️ Comandos Úteis
 
 - **Acessar o container da aplicação (bash):**
   ```bash
-  docker-compose exec app bash
+  docker compose exec app bash
   ```
   
-- **Executar a análise estática do código:**
+- **Executar a análise estática do código (PHPStan):**
   ```bash
-  docker-compose exec app vendor/bin/phpstan
+  docker compose exec app composer phpstan
+  ```
+
+- **Analisar e corrigir a sintaxe do código (PHP CS Fixer):**
+  ```bash
+  docker compose exec app composer lint
   ```
 
 - **Rodar os testes:**
   ```bash
-  docker-compose exec app php artisan test
+  docker compose exec app composer test
   ```
 
 - **Limpar cache:**
   ```bash
-  docker-compose exec app php artisan optimize:clear
+  docker compose exec app php artisan optimize:clear
   ```
 
 - **Monitorar logs:**
   ```bash
-  docker-compose logs -f app
+  docker compose logs -f app
   ```
