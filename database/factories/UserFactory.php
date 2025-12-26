@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Domain\Enum\UserType;
+use App\Domain\User\Enum\UserType;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;

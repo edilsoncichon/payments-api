@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Exception;
+namespace App\Domain\Transaction\Exception;
 
 class TransactionUpdateNotAllowedException extends \Exception
 {

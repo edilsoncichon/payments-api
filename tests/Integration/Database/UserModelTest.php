@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Integration\Database;
 
-use App\Domain\Enum\UserType;
+use App\Domain\User\Enum\UserType;
 use App\Models\User;
 use App\Models\Wallet;
 use Carbon\Carbon;

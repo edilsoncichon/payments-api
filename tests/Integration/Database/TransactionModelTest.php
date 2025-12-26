@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Database;
+namespace Tests\Integration\Database;
 
-use App\Domain\Exception\TransactionUpdateNotAllowedException;
+use App\Domain\Transaction\Exception\TransactionUpdateNotAllowedException;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Database\QueryException;

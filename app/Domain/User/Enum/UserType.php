@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Enum;
+namespace App\Domain\User\Enum;
 
 enum UserType: string
 {
     case COMMON = 'common';
-    case MERCHANT = 'merchant';
+    case STORE = 'store';
 }
